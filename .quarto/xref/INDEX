@@ -13,5 +13,17 @@
   },
   "posts/myNewPost/index.qmd": {
     "index.html": "b841a245"
+  },
+  "datavis1/Datavis_example.qmd": {
+    "Datavis_example.html": "92a6ff85"
+  },
+  "posts/datavis1/Datavis_example.qmd": {
+    "Datavis_example.html": "dc7d98cd"
+  },
+  "posts/Tips & Tricks/index.qmd": {
+    "index.html": "c7f63fd5"
+  },
+  "posts/Tips & Tricks/tipsTricks.qmd": {
+    "tipsTricks.html": "e53e7df6"
   }
 }

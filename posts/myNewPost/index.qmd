@@ -3,7 +3,7 @@ title: "Learning RStudio"
 author: "Emmanuel Pascual"
 date: "2023-01-29"
 categories: [RLearning, Code, Data]
-image: "image.jpg"
+image: "IMG_5336.jpg"
 ---
 
 This is a post with executable code.

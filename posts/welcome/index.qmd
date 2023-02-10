@@ -1,11 +1,11 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "This is an Image"
+author: ""
 date: "2023-01-26"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+Isn't this a rather interesting way to add pictures, you just need to drag and drop?
 
 ![](thumbnail.jpg)
 
