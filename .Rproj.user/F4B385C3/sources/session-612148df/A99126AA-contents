@@ -19,9 +19,6 @@ If you have the above settings configured correctly, when you open up RStudio an
 
 # Useful Functions
 
-```{}
-```
-
 ### **Mean and Counting Tricks**
 
 -   [1:5:]{.underline} Instead of wasting valuable time typing out every number you could us "1:5" which is the same as 1, 2, 3, 4, 5
@@ -56,13 +53,13 @@ My_number
 
 3.  usually this is Strings as seen in the example below.
 
-#### as.numeric() , as.character()
+4.  as.numeric(Array) \| as.character(Array) \|
 
 ```{r}
-My_number <- 7 
+My_number[] <- 7 
 as.numeric(My_number)
 My_number[1] <- 2 
-as.numeric(My_number)
+as.character(My_number)
 ```
 
 ## What is a TRIM() ???  I actually have no idea.  "Trim = Data cleaning process rTrim() is very confusing. What the hell."
