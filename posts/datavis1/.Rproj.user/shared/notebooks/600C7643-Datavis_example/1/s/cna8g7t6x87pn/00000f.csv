@@ -1,0 +1,7 @@
+"0","#| label: list-countries"
+"0","#| echo: false"
+"0","unvotes %>% "
+"0","  select(country) %>%"
+"0","  arrange(country) %>% "
+"0","  distinct() %>%"
+"0","  datatable()"

@@ -1,0 +1,13 @@
+---
+title: "Objective 1"
+author: "Emmanel Pascual"
+date: "2023-01-29"
+categories: [Understanding what is going on.]
+image: "image.jpg"
+---
+
+This is a post with executable code.
+
+``` {1+1}
+
+```
