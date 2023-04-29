@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Emmanuel Pascual">
-<meta name="dcterms.date" content="2023-03-20">
+<meta name="author" content="Emmanel Pascual">
+<meta name="dcterms.date" content="2023-03-21">
 
-<title>Meow 4 the Mao - Data Relations</title>
+<title>Meow 4 the Mao - Week 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -168,8 +168,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Data Relations</h1>
-                      </div>
+      <h1 class="title">Week 7</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Week</div>
+                <div class="quarto-category">Number</div>
+                <div class="quarto-category">Seven</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -178,14 +183,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Emmanuel Pascual </p>
+               <p>Emmanel Pascual </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 20, 2023</p>
+        <p class="date">March 21, 2023</p>
       </div>
     </div>
     
@@ -196,13 +201,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#number-of-reviews-by-year" id="toc-number-of-reviews-by-year" class="nav-link active" data-scroll-target="#number-of-reviews-by-year">1. Number of reviews by year</a></li>
+  <li><a href="#verified-users" id="toc-verified-users" class="nav-link" data-scroll-target="#verified-users">2. Verified users</a></li>
+  <li><a href="#review-ratings" id="toc-review-ratings" class="nav-link" data-scroll-target="#review-ratings">3. Review ratings</a></li>
+  <li><a href="#overall" id="toc-overall" class="nav-link" data-scroll-target="#overall">4. Overall</a></li>
+  <li><a href="#by-purchase-status" id="toc-by-purchase-status" class="nav-link" data-scroll-target="#by-purchase-status">By purchase status</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<p>Welcome to the Seventh Week!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Make vectors before, then tibble, then GGPLOT</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -274,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 <section id="number-of-reviews-by-year" class="level2">
-<h2 class="anchored" data-anchor-id="number-of-reviews-by-year">Number of reviews by year</h2>
+<h2 class="anchored" data-anchor-id="number-of-reviews-by-year">1. Number of reviews by year</h2>
 <p>The below histogram shows the number of video game reviews submitted to Amazon by year. From 1999 reviews largely increased year-on-year which is unsurprising given the growth of Amazon and access to the internet. The dataset shows the peak number of reviews was 2015 with a decline from 2016 to 2018. It is likely that this reflects the dataset being incomplete for recent years rather than the number of reviews declining in reality.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -283,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="verified-users" class="level2">
-<h2 class="anchored" data-anchor-id="verified-users">Verified users</h2>
+<h2 class="anchored" data-anchor-id="verified-users">2. Verified users</h2>
 <p>The dataset contains details of whether the review was based on a verified purchase. From <a href="https://www.amazon.co.uk/gp/help/customer/display.html?nodeId=G75XTB7MBMBTXP6W">Amazon Community</a>:</p>
 <blockquote class="blockquote">
 <p>An “Amazon Verified Purchase” review means that we’ve verified that the person writing the review purchased the product from Amazon, and didn’t receive the product at a big discount. Reviews that are not marked “Amazon Verified Purchase” are valuable as well, but, either we cannot confirm that the product was purchased from Amazon, or that the customer paid a price that is available to most Amazon shoppers.</p>
@@ -326,10 +344,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="review-ratings" class="level2">
-<h2 class="anchored" data-anchor-id="review-ratings">Review ratings</h2>
+<h2 class="anchored" data-anchor-id="review-ratings">3. Review ratings</h2>
 </section>
 <section id="overall" class="level2">
-<h2 class="anchored" data-anchor-id="overall">Overall</h2>
+<h2 class="anchored" data-anchor-id="overall">4. Overall</h2>
 <p>Amazon review ratings are provided on a scale of 1 (worst) to 5 (best) stars. The histogram below shows the total number of reviews assigned each rating.</p>
 <div class="cell">
 <div class="cell-output-display">

@@ -1,11 +1,9 @@
 ---
-title: "Week 5 Assignment"
-author: "Emmanel Pascual"
-toc-title: Contents
-toc: true
-toc-depth: 2
+title: "Week_5"
+author: "Emmanuel Pascual"
 date: "2023-03-04"
-categories: [Week, Number, five]
+categories: [RLearning, Code, Data]
+image: "images/import.jpg"
 ---
 
 ```{r, setup, include=FALSE}
@@ -25,7 +23,7 @@ library(readxl)        # for Excel files
 library(googlesheets4) # for Google Sheets
 ```
 
-Library()\*\*
+Library()
 
 -   tidyverse: Reader & Tibble
 

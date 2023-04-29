@@ -1,7 +1,12 @@
 ---
-title: "What does DPLYR DO? Left Joins or Right Joins"
-author: "Emmanuel Pascual" 
-date: "4-18-2023" 
+title: "Slide to the left, Slide to the Right"
+author: "Emmanel Pascual"
+toc-title: Contents
+toc: true
+toc-depth: 2
+date: "2023-04-17"
+categories: [Week, Number, Seven]
+image: "images/full_join.png"
 ---
 
 ```{r}

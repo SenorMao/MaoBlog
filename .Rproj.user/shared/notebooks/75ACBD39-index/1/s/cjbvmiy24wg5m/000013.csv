@@ -1,4 +1,0 @@
-"0"," "
-"0","#You can even do MATHH! "
-"0"," orders_B %>% "
-"0","  mutate(items_minus_id = items - id)"

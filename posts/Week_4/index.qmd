@@ -4,11 +4,10 @@ author: "Emmanel Pascual"
 toc-title: Contents
 toc: true
 toc-depth: 2
-date: "2023-02-28"
+date: "02-28-2023"
 categories: [Week, Number, Four]
-image: "cheatCode.avif"
----
-
+image: "glass.jpg"
+--- 
 # Require Imports
 
 ```{r echo=FALSE}
@@ -16,8 +15,6 @@ library(tidyverse)  # various data manipulation functions
 library(knitr)      # for rendering a report from a script
 library(rmarkdown)  # for using R markdown
 ```
-
-Write a new blog post and submit the link to this assignment on blackboard. Write your blog around the three big themes:
 
 # 1. Data types: Show that you understand what is available to you in R. Note also, this goal overlaps with part of the midterm project. See the appendix on Data Types in the textbook for help. Write notes and R code chunks to demonstrate your knowledge
 

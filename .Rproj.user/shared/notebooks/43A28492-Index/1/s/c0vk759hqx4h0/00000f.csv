@@ -1,5 +1,0 @@
-"0","name <- ""Emily"""
-"0","age <- 36"
-"0","today <- Sys.Date()"
-"0","christmas <- as.Date(""2023-12-25"")"
-"0",""

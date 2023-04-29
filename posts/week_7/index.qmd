@@ -1,9 +1,15 @@
 ---
-title: "Data Relations"
-author: "Emmanuel Pascual" 
-toc:4 
-date: "3-18-2023" 
+title: "Week 7 "
+author: "Emmanel Pascual"
+toc-title: Contents
+toc: true
+toc-depth: 2
+date: "2023-03-21"
+categories: [Week, Number, Seven]
+image: "images/Data.jpg"
 ---
+
+Welcome to the Seventh Week!
 
 ```{r}
 ##Make vectors before, then tibble, then GGPLOT

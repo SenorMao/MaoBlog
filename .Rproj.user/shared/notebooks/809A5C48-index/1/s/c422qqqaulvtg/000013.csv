@@ -1,3 +1,0 @@
-"0","library(tidyverse)  # various data manipulation functions"
-"0","library(knitr)      # for rendering a report from a script"
-"0","library(rmarkdown)  # for using R markdown"

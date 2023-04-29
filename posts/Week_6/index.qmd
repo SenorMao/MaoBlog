@@ -3,10 +3,10 @@ title: "Week_6"
 author: "Emmanuel Pascual"
 date: "2023-03-11"
 categories: [RLearning, Code, Data]
-image: "dataPic.jpg"
+image: "images/elon.jpeg"
 ---
 
-For this Module we will be lookin at several tweets and making descriptive analysis' using R libraries:
+For this Module we will be lookin at several tweets and making descriptive analysis' using R libraries
 
 5.1
 

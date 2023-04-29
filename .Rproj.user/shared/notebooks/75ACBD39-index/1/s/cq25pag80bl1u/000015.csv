@@ -1,4 +1,0 @@
-"0",""
-"0","right_data <- right_join(customers, orders, by = ""id"")"
-"2","Warning: Each row in `x` is expected to match at most 1 row in `y`."
-"0","right_data"
