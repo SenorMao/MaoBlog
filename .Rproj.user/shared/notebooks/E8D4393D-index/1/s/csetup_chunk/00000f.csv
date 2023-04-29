@@ -1,0 +1,3 @@
+"0","library(tidyverse)   # data wrangling functions"
+"0","library(rtweet)      # for searching tweets"
+"0","library(kableExtra)  # for nice tables"

@@ -25,5 +25,30 @@
   },
   "posts/Tips & Tricks/tipsTricks.qmd": {
     "tipsTricks.html": "e53e7df6"
+  },
+  "posts/Week-3/Index.qmd": {
+    "Index.html": "213c02a6",
+    "Index.tex": "2711384c"
+  },
+  "posts/Week_4/index.qmd": {
+    "index.html": "d4876497"
+  },
+  "posts/Week_5/index.qmd": {
+    "index.html": "592e5092"
+  },
+  "posts/Week_5/summary.Rmd": {
+    "summary.html": "31efab05"
+  },
+  "posts/Week_6/index.qmd": {
+    "index.html": "67b7ddf0"
+  },
+  "posts/Midterm/index.qmd": {
+    "index.html": "cd40d97e"
+  },
+  "posts/week_7/index.qmd": {
+    "index.html": "71d7b66d"
+  },
+  "posts/week_8/index.qmd": {
+    "index.html": "a4632806"
   }
 }

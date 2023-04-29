@@ -1,0 +1,333 @@
+install.packages("rmarkdown")
+install.packages("tinytex")
+10 + 3
+setwd("C:/Users/Mao/Desktop/MaoBlog/_site")
+unvotes <- un_votes %>%
+inner_join(un_roll_calls, by = "rcid") %>%
+inner_join(un_roll_call_issues, by = "rcid")
+#| label: plot-yearly-yes-issue
+#| message: false
+#| fig-width: 10
+#| fig-height: 6
+unvotes %>%
+filter(country %in% c("Australia", "Russia", "Bahamas")) %>%
+mutate(year = year(date)) %>%
+group_by(country, year, issue) %>%
+summarize(percent_yes = mean(vote == "yes")) %>%
+ggplot(mapping = aes(x = year, y = percent_yes, color = country)) +
+geom_point(alpha = 0.4) +
+geom_smooth(method = "loess", se = FALSE) +
+facet_wrap(~issue) +
+scale_y_continuous(labels = percent) +
+labs(
+title = "Percentage of 'Yes' votes in the UN General Assembly",
+subtitle = "1946 to 2019",
+y = "% Yes",
+x = "Year",
+color = "Country"
+)
+#| label: list-countries
+#| echo: false
+unvotes %>%
+select(country) %>%
+arrange(country) %>%
+distinct() %>%
+datatable()
+unvotes <- un_votes %>%
+inner_join(un_roll_calls, by = "rcid") %>%
+inner_join(un_roll_call_issues, by = "rcid")
+#| label: load-packages
+#| warning: false
+#| message: false
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(DT)
+library(unvotes)
+unvotes <- un_votes %>%
+inner_join(un_roll_calls, by = "rcid") %>%
+inner_join(un_roll_call_issues, by = "rcid")
+unvotes <- un_votes %>%
+inner_join(un_roll_calls, by = "rcid") %>%
+inner_join(un_roll_call_issues, by = "rcid")
+#| label: plot-yearly-yes-issue
+#| message: false
+#| fig-width: 10
+#| fig-height: 6
+unvotes %>%
+filter(country %in% c("Australia", "Russia", "Bahamas")) %>%
+mutate(year = year(date)) %>%
+group_by(country, year, issue) %>%
+summarize(percent_yes = mean(vote == "yes")) %>%
+ggplot(mapping = aes(x = year, y = percent_yes, color = country)) +
+geom_point(alpha = 0.4) +
+geom_smooth(method = "loess", se = FALSE) +
+facet_wrap(~issue) +
+scale_y_continuous(labels = percent) +
+labs(
+title = "Percentage of 'Yes' votes in the UN General Assembly",
+subtitle = "1946 to 2019",
+y = "% Yes",
+x = "Year",
+color = "Country"
+)
+#| label: list-countries
+#| echo: false
+unvotes %>%
+select(country) %>%
+arrange(country) %>%
+distinct() %>%
+datatable()
+??FunctionName
+?function
+?mean
+?functionMean
+?mean
+rep(4 , 6)
+rep(4 , 6)
+rep(4 , 6)
+?mean
+?mean
+??mean
+c(1 , 1,92, 182)
+My_number <- c(1 ,92, 182)
+My_number
+My_number <- c(1 ,92, 182)
+My_number
+"We can Change the Vector using this My_number[2] <- 'two' "
+My_number <- c(1 ,92, 182)
+My_number
+"We can Change the Vector using this My_number[2] <- 'two' "
+My_number[2] <- "two"
+"Lets see, background realness darling"
+My_number
+My_number <- c(1, 92, 182)
+My_number
+"We can Change the Vector using this My_number[2] <- 'two' "
+My_number[2] <- "two"
+"Lets see, background realness darling"
+My_number
+My_number <- c(1, 92, 182)
+My_number
+"We can Change the Vector using this My_number[2] <- 'two' "
+My_number[2] <- "two"
+"Lets see, background realness darling"
+My_number
+"Remember when we add quotation marks to any Vectors the entire range becomes Strings & or Characters"
+My_number <- c(1, 92, 182)
+My_number
+"We can Change the Vector using this My_number[2] <- 'two' "
+My_number[2] <- "two"
+"Lets see, background realness darling"
+My_number
+"Remember when we add quotation marks to any Vectors the entire range becomes Strings & or Characters"
+rep(4 , 6)
+"Since R is an interesting language we learned that it does not typecast nor conatonate"
+as.character(My_number)
+"Since R is an interesting language we learned that it does not typecast nor conatonate"
+as.numeric(My_number)
+"Since R is an interesting language we learned that it does not typecast nor conatonate"
+as.numeric(My_number)
+"See if we have have two instead of 2 it doesn't work lets edit that out"
+My_number[2] <- 2
+as.numeric(My_number)
+"Since R is an interesting language we learned that it does not typecast nor conatonate"
+as.numeric(My_number)
+"See if we have the string two instead of 2 an interger it doesn't work lets edit that out! "
+My_number[2] <- 2
+as.numeric(My_number)
+"Huzzah we did it! "
+?trim
+??trim
+??trim
+beat
+beep(8)
+beep
+??beep
+alarm
+alarm(beep)
+alarm()
+alarm()
+alarm(2)
+rep(4 , 6)
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+vector1
+vector2
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+rep(4 , 6)
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+vector1
+vector2
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+rep(4 , 6)
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+vector1
+vector2
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+rep(4 , 6)
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+rep(4 , 6)
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+vector2
+rep(4 , 6)
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+vector1
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+vector1
+Yay <- rep(4 , 6)
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+"The difference is the syntax its faster to do 1:6 than 1 , 2 , ... "
+vector1
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 ) vector2 <- c(1:6) vector1  vector2
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+vector1
+vector2
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c(1:6)
+vector2
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector1 <- c(1:6)
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+c((1:6))
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c((1:6))
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c((1:6))
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c((1:6))
+vector2 <- c(1:8)
+vector2
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c((8:10))
+vector 2
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c((8:10))
+vector2
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c((8:10))
+vector1
+vector2
+?mean
+numbs <- 1:6
+Mean(numbs)
+numbs <- 1:6
+mean(numbs)
+"Trim = Data cleaning process rTrim() is very confusing. What the hell."
+1:6
+add(numbs)
+add(1:6)
+sum(1:6)
+average(21)
+mean(21)
+mean(21)
+average
+21 / 6
+mean()
+Mean(1)
+mean(1)
+mean(21)
+numbs <- 1:6
+mean(numbs)
+"Trim = Data cleaning process rTrim() is very confusing. What the hell."
+mean(numbs , .1 )
+?sample
+dice <- c(1:6)
+sample( dice , 8 , prob = 1/6)
+dice <- c(1:6)
+sample( dice , 8 ,replace = false, prob = 1/6)
+dice <- c(1:6)
+sample( dice , 8 ,replace = FALSE , prob = 1/6)
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob = 1/6)
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob = 1/6 , 8)
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob = rep(1/6 , 8)
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob = rep(1/6 , 8))
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob=rep(1/6 , 8))
+dice <- c(1:6)
+sample( dice , 8 ,replace = FALSE , prob=rep(1/6 , 8))
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob=rep(1/6 , 8))
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob=rep(1/6))
+install.packages("tidyverse")
+dice <- c(1:6)
+sample( dice , 8 ,replace = TRUE , prob=rep(1/6))
+dice <- c(1:6)
+dice
+sample( dice , 8 ,replace = TRUE , prob=rep(1/6))
+dice <- c(1:6)
+dice
+sample(dice, 6, replace = FALSE, prob = rep(1/6, 6))
+reticulate::repl_python()
+reticulate::repl_python()
+#| echo: true
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4])
+plt.show()
+#| echo: true
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4])
+plt.show()
+#| error: true
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4])
+plt.show()
+#| error: true
+"Looks like it's not working Bub, gonna have to ring her out"
+#| error: false
+"Looks like it's not working Bub, gonna have to ring her out"
+#| error: TRUE
+"Looks like it's not working Bub, gonna have to ring her out"
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) +
+geom_point() +
+geom_smooth(method = "loess", se = FALSE)
+#| echo: false
+radius = 10
+from IPython.display import display, Markdown
+display(Markdown("""
+The radius of the circle is {radius}.
+""".format(radius = radius)))
+quit
+error

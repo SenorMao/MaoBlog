@@ -1,0 +1,5 @@
+"0","my_df <- data.frame( a = 1:5,"
+"0","                     b = c(""one"",""two"",""three"",""four"",""five""),"
+"0","                     random = runif(5,0,1))"
+"0","#print to see"
+"0","my_df"

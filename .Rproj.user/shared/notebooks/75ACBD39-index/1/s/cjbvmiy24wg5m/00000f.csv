@@ -1,0 +1,8 @@
+"0","orders_B <- tibble("
+"0","  id = c(2, 3, 4, 4, 5, 5, 6, 6, 7),"
+"0","  items = c(10, 18, 21, 23, 9, 11, 11, 12, 3)"
+"0",")"
+"0","# add a new column and "
+"0","orders_B %>%"
+"0","          mutate(satisfaction = NA,"
+"0","                 number = 1:9)"

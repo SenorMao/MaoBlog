@@ -1,0 +1,86 @@
+---
+title: "Tips and Tricks +"
+author: "Emmanel Pascual"
+date: "2023-02-09"
+categories: [Data, Tips, Tricks]
+image: "cheatCode.avif"
+---
+
+### Here Comes The Great Tips and Tricks!
+
+\
+If you have the above settings configured correctly, when you open up RStudio and start writing code, loading packages, and creating objects, you will be doing so in a new session and your Environment tab should be completely empty. If you find that your code isn't working and you can't figure out why, it might be worth restarting your R session. This will clear the environment and detach all loaded packages - think of it like restarting your phone. There are several ways that you can restart R:
+
+-   Menu: **Session \> Restart R**
+
+-   Cmd-Shift-F10 or Ctl-Shift-F10
+
+-   type `.rs.restartR()` in the console
+
+# Useful Functions
+
+### **Mean and Counting Tricks**
+
+-   [1:5:]{.underline} Instead of wasting valuable time typing out every number you could use "1:5" which is the same as 1, 2, 3, 4, 5
+
+-   [rep(x , y)]{.underline}: When looking to repeat a value multiple times I.E assigning arrays. rep(x , y) Rep = Repetition , X = Value , Y = Instances.
+
+```{r}
+Yay <- rep(4 , 6)
+Yay
+vector1 <- c(1 , 2, 3 , 4, 5, 6 )
+vector2 <- c((8:10))
+vector1
+vector2 
+```
+
+-   c() = combines values into a vector or a list (VECTOR) C( 1 , 2 , 3 )
+
+```{r}
+My_number <- c(1, 92, 182)
+My_number
+My_number[2] <- "two"
+My_number
+
+
+```
+
+#### Type Cast Tips and Tricks:
+
+1.  Unlike in Java where you are able to type cast a value and convert it into for instance a Double instead of a Integer,
+
+2.  R does not have the same principle it will use the below Functions to augment all the values into one of the same,.
+
+3.  usually this is Strings as seen in the example below.
+
+4.  as.numeric(Array) \| as.character(Array) \|
+
+```{r}
+My_number[] <- 7 
+as.numeric(My_number)
+My_number[1] <- 2 
+as.character(My_number)
+```
+
+## What is a TRIM() ??? I actually have no idea. "Trim = Data cleaning process rTrim() is very confusing. What the hell."
+
+```{r}
+numbs <- 1:6
+mean(numbs)
+mean(numbs , .1 )
+
+```
+
+### Assigning Probability (Dice Example \| Sample() )
+
+Sample function is random selection
+
+-   Sample (x , size , replace = BOOLEAN, Prob = (X , Y ) ) When Sample makes a selection it wants to know what the probability is that's when the REP function comes into play.
+
+-   With the code below we assign a variable called Dice with an array of 1 through 6, we then utilize the Sample() function to roll the dice, here we must also set the probability and a nifty trick is to use the rep() function as well to not write 1/6 six different times.
+
+```{r}
+dice <- c(1:6)
+dice
+sample(dice, 6, replace = FALSE, prob = rep(1/6, 6))
+```

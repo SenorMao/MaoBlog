@@ -1,0 +1,4 @@
+"0","tweets <- readRDS(""data/ncod_tweets.rds"")"
+"0","saveRDS(tweets, file = ""data/ncod_tweets.rds"")"
+"0",""
+"0",""
