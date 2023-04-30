@@ -114,13 +114,9 @@ plot_df <- data.frame(a, b)
 # basic scatterplot
 ggplot(plot_df, aes(x = a, y = b)) +
   geom_point()+
-  geom_smooth(method = lm) +
   coord_cartesian(xlim = c(0, 7), ylim = c(0, 10)) +
   xlab("Day") +
   ylab("Time spent") +
-  
-  ggtitle("Minutes Spent Day Dreaming") +
-  theme_classic(base_size = 12) +
-  theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("Minutes Spent Day Dreaming")
 ```
 
