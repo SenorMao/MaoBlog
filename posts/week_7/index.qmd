@@ -1,5 +1,5 @@
 ---
-title: "Week 7 "
+title: "Week 7 Back at it again "
 author: "Emmanel Pascual"
 toc-title: Contents
 toc: true
