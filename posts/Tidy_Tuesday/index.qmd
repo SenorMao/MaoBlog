@@ -1,6 +1,6 @@
 ---
-title: "Tidy Tuesday"
-author: "Me"
+title: "Tidy Tuesday Substitute"
+author: "Emmanuel Pascual"
 toc-title: Contents
 toc: true
 toc-depth: 2
