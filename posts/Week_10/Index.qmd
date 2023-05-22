@@ -1,0 +1,187 @@
+---
+title: "Data Tidying"
+author: "Matt Crump"
+date: "4/19/2023"
+---
+
+```{r setup, include=FALSE}
+
+library(tidyverse) # This is required for TidyClean up
+
+```
+
+## look at untidy data
+
+```{r}
+
+untidy_data <- read_csv("data/untidy_data.csv", show_col_types = FALSE)
+
+knitr::kable(untidy_data)
+```
+
+## look at tidy data
+
+```{r}
+
+tidy_data <- read_csv("data/tidy_data.csv", show_col_types = FALSE)
+
+knitr::kable(tidy_data)
+
+```
+
+## selecting columns
+
+```{r}
+# select just the customer ID and 3 total price columns
+wide_totalprice <- select(
+  .data = untidy_data,
+  customer_id, 
+  `2018` = totalprice_2018,
+  `2019` = totalprice_2019,
+  `2020` = totalprice_2020
+)
+
+
+ wide_totalprice <- select(
+   .data = untidy_data,
+   customer_id, 
+   totalprice_2018,
+   totalprice_2019,
+   totalprice_2020
+ ) %>%
+   rename(
+   `2018` = totalprice_2018,
+   `2019` = totalprice_2019,
+   `2020` = totalprice_2020
+   )
+ 
+ 
+ wide_totalprice <- untidy_data[,]
+
+untidy_data[ , c(1,5,6,7) ]
+
+untidy_data[ , c(1,5:7) ]
+```
+
+## pivot the table longer
+
+```{r}
+long_totalprice <- pivot_longer(
+  data = wide_totalprice,
+  cols = 2:4,
+  names_to = "year",
+  values_to = "totalprice")
+
+```
+
+```{r}
+ggplot(long_totalprice, aes(x = totalprice, fill = year)) +
+  geom_histogram(binwidth = 10, color = "black")
+```
+
+## pivot wider
+
+```{r}
+wide_by_customer <- pivot_wider(
+  data = long_totalprice,
+  id_cols = year, # identifying column(s)
+  names_from = customer_id, # the new column names
+  names_prefix = "C_", # prefix for new column names
+  values_from = totalprice # the new column values
+)
+
+wide_by_year <- pivot_wider(
+  data = long_totalprice,
+  id_cols = customer_id, # identifying column(s)
+  names_from = year, # the new column names
+  values_from = totalprice # the new column values
+)
+```
+
+## multi-step tidying
+
+```{r}
+longer_data <- pivot_longer(
+  data = untidy_data, 
+  cols = itemsprice_2018:totalprice_2020, # columns to make long 
+  names_to = c("category", "year"), # new column names for cols
+  names_sep = "_", # how to split cols into new columns
+  # names_pattern = "(.*)_(.*)", # alternative to names_sep
+  values_to = "value", # new column name for values
+  # make sure new columns are the right data type
+  names_transform = list(year = as.integer),
+  values_transform = list(value = as.character) 
+)
+
+wider_data <- pivot_wider(
+  data = longer_data,
+  id_cols = c(customer_id, year),
+  names_from = category,
+  values_from = value
+)
+
+split_data <- separate(
+  data = wider_data, 
+  col = itemsprice, # the column to split
+  into = c("items", "price_per_item"), # the new columns to create
+  sep = " ", # split col by space
+  remove = TRUE, # whether to remove to old col
+  convert = TRUE # whether to fix the data type of the new columns
+)
+
+mutated_data <- mutate(
+  .data = split_data,
+  price_per_item = stringr::str_replace_all(
+    string = price_per_item, 
+    pattern = "[()]", # regex 
+    replacement = ""
+  )
+)
+
+tidy_data <- type_convert(
+  df = mutated_data,
+  trim_ws = TRUE # removes spaces before and after values
+)
+
+# check the data types
+glimpse(tidy_data)
+```
+
+
+
+```{r}
+
+tidy_data_2 <- read_csv(file = "data/untidy_data.csv",
+                      show_col_types = FALSE) %>%
+  pivot_longer(
+    cols = itemsprice_2018:totalprice_2020,
+    names_to = c("category", "year"),
+    names_sep = "_", 
+    values_to = "value", 
+    names_transform = list(year = as.integer),
+    values_transform = list(value = as.character) 
+  ) %>%
+  pivot_wider(
+    id_cols = c(customer_id, year),
+    names_from = category,
+    values_from = value
+  ) %>%
+  separate(
+    col = itemsprice,
+    into = c("items", "price_per_item"),
+    sep = " ", 
+    remove = TRUE, 
+    convert = TRUE
+  ) %>%
+  mutate(
+    price_per_item = stringr::str_replace_all(
+      string = price_per_item, 
+      pattern = "[()]", 
+      replacement = ""
+    )
+  ) %>%
+  type_convert(
+    trim_ws = TRUE
+  )
+
+```
