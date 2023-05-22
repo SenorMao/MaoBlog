@@ -65,8 +65,6 @@ ggplot(plot_df,
   facet_wrap( ~ factor_three)
 ```
 
-
-
 ```{r, echo=FALSE, message=FALSE}
 #load libraries
 library(tidyverse)
@@ -75,7 +73,6 @@ library(tidyverse)
 review_data <- rio::import("review_data.csv")
 
 ```
-
 
 ```{r, echo= FALSE}
 #Get number of reviews per year
@@ -119,4 +116,3 @@ ggplot(plot_df, aes(x = a, y = b)) +
   ylab("Time spent") +
   ggtitle("Minutes Spent Day Dreaming")
 ```
-

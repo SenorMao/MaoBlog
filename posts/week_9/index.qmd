@@ -10,13 +10,70 @@ image: "images/Data.jpg"
 ---
 
 
+
+```{r}
+##Make vectors before, then tibble, then GGPLOT
+library(tidyverse)
+
+grades <- c(2.5, 8, 4)
+students <- c("A" , "B", "C")
+student_performance <- tibble(grades, students)
+
+# alternate Syntax
+
+student_performance2 <- tibble(
+  grades = c(2.5, 8, 4),
+  students =c("A","B","C")
+ 
+)
+#this has a Y limiter
+ggplot(data=student_performance, aes(x=students, y=grades))+
+  geom_bar(stat= "identity", fill = "white" , color = "blue")+
+  scale_y_continuous(breaks = 0:10,limits = c(0,10))+
+  theme_classic(base_size = 12) +
+  geom_text(label = grades, position = position_dodge(width =.9) , vjust = .001)+
+  xlab("Students")+
+  ylab("Grades")+
+  ggtitle("Student Performance")
+
+```
+
+```{r}
+factor_one <- rep(rep(as.factor(c("A", "B", "C")), 2), 2)
+factor_two <- rep(rep(as.factor(c("IIA", "IIB")), 3), 2)
+factor_three <- rep(as.factor(c("IIIA", "IIIB")), each = 6)
+dv_means <- c(20, 30, 40, 20, 40, 40,
+          	10, 20, 50, 50, 10, 10)
+dv_SEs   <- c(4, 3.4, 4, 3, 2, 4,
+          	1, 2, 1, 2, 3, 2)
+plot_df <- data.frame(factor_one,
+                  	factor_two,
+                  	factor_three,
+                  	dv_means,
+                  	dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df,
+   	aes(
+     	x = factor_one,
+     	y = dv_means,
+     	group = factor_two,
+     	fill = factor_two
+   	)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap( ~ factor_three)
+```
+
+Reproduce Examples: (Will do 3 tomorrow)
+
 ```{r, echo=FALSE, message=FALSE}
 #load libraries
 library(tidyverse)
-library(readr)
-amazon <- read_csv("amazon.csv")
-View(amazon)
 
+#load the data
+review_data <- read.csv("Data/review_data.csv")
+review_data
 ```
 
 ## 1. Number of reviews by year
@@ -25,7 +82,8 @@ The below histogram shows the number of video game reviews submitted to Amazon b
 
 ```{r, echo= FALSE}
 #Get number of reviews per year
-reviews_by_year <- amazon %>%
+
+reviews_by_year <- review_data %>%
   group_by(year) %>%
   summarize(counts = n())
 
@@ -39,7 +97,6 @@ ggplot(data = reviews_by_year, mapping = aes(x=year, y=counts))+ # take the data
   theme(axis.text.x = element_text(angle = 85, vjust = 1, hjust=1))+
   xlab("")+
   ylab("")+
-  scale_y_continuous(labels = scales::comma)+
   ggtitle("Number of reviews per year",
           subtitle = "1999 to 2018")+
   theme(
@@ -64,8 +121,8 @@ Table 1 shows the number of reviews based on verified and unverified purchases.
 #| tbl-cap: Number of reviews by purchase status
 
 #Get number of verified users
-amazon
-verified_reviews <- amazon %>%
+review_data
+verified_reviews <- review_data %>%
   group_by(verified) %>%
   summarize(counts = n())
 
@@ -79,7 +136,7 @@ Whilst the number of verified reviews is substantially larger than the number of
 ```{r, echo= FALSE}
 #Get number of reviews per year
 
-year_by_verified_counts <- amazon %>%
+year_by_verified_counts <- review_data %>%
   group_by(year,verified) %>%
   summarize(counts = n())
 
@@ -98,7 +155,6 @@ ggplot(data = year_by_verified_counts,
   theme(axis.text.x = element_text(angle = 85, vjust = 1, hjust=1))+
   xlab("")+
   ylab("")+
-  scale_y_continuous(labels = scales::comma)+
   ggtitle("Number of reviews per year",
           subtitle = "By purchase status")+
   theme(
@@ -119,7 +175,7 @@ Amazon review ratings are provided on a scale of 1 (worst) to 5 (best) stars. Th
 ```{r, echo= FALSE}
 #Get number of reviews per each rating
 
-reviews_by_rating <- amazon %>%
+reviews_by_rating <- review_data %>%
   group_by(rating) %>%
   summarize(counts = n())
 
@@ -129,9 +185,9 @@ reviews_by_rating <- amazon %>%
 # plot
 ggplot(data = reviews_by_rating, mapping = aes(x=rating, y=counts))+
   geom_bar(stat= "identity",fill="white",color="black")+
+  ylim(0 , 300000)+
   xlab("")+
   ylab("")+
-  scale_y_continuous(labels = scales::comma)+
   ggtitle("Review Ratings",
           subtitle = "Number of reviews for each rating")+
   theme(
@@ -150,7 +206,7 @@ However, if you break this data down by verified purchases status you can see th
 ```{r}
 #Get number of reviews per year
 
-rating_by_verified_counts <- amazon %>%
+rating_by_verified_counts <- review_data %>%
   group_by(rating,verified) %>%
   summarize(counts = n())
 
@@ -165,9 +221,9 @@ ggplot(data = rating_by_verified_counts,
                      fill = verified))+
 
   geom_bar(stat= "identity", position = "dodge")+
+  scale_y_continuous(breaks = 0 , 50000 , 100000 , 150000, 200000 )+
   xlab("")+
   ylab("")+
-  scale_y_continuous(labels = scales::comma)+
   ggtitle("Review Ratings",
           subtitle = "By purchase status")+
   theme(
@@ -182,7 +238,7 @@ ggplot(data = rating_by_verified_counts,
 ```{r}
 
 
-verified_descriptions <- amazon %>% 
+verified_descriptions <- review_data %>% 
   group_by(verified) %>%
   summarize(`Mean rating` = round(mean(rating),digits= 2),
             `Median_rating` = median(rating)) %>%
@@ -198,7 +254,7 @@ knitr::kable(verified_descriptions)
 ```{r}
 #Creating a table with Years, verified, and Mean Rating
 
-year_rating_status <- amazon %>% 
+year_rating_status <- review_data %>% 
   group_by(year, verified) %>%
   summarise(mean_rating = mean(rating), .groups = 'drop')
 
@@ -209,7 +265,7 @@ ggplot(data = year_rating_status,
                      color = verified))+
   geom_line()+
   geom_point()+
-  ylim(3.7 , 4.5)+
+  ylim(3 , 5)+
   scale_x_continuous(breaks = 1999:2018)+
   scale_color_manual(values = c('#1b9e77' , '#d95F02'))+
   theme(axis.text.x = element_text(angle = 85, vjust = 1, hjust=1))+
@@ -225,3 +281,7 @@ ggplot(data = year_rating_status,
     panel.grid.minor=element_line(colour="lightgrey"), 
     )
 ```
+
+
+
+
