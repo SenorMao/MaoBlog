@@ -1,1 +1,1 @@
-{"headings":["number-of-reviews-by-year","verified-users","review-ratings","overall","by-purchase-status"],"entries":[{"key":"tbl-verified","caption":"Number of reviews by purchase status","order":{"section":[0,2,0,0,0,0,0],"number":1}}]}
+{"headings":["number-of-reviews-by-year","verified-users","review-ratings","overall","by-purchase-status"],"entries":[{"order":{"number":1,"section":[0,2,0,0,0,0,0]},"caption":"Number of reviews by purchase status","key":"tbl-verified"}]}

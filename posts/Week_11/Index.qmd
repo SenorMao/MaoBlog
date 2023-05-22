@@ -1,0 +1,181 @@
+---
+title: "Data Wrangling - Week 11"
+author: "Emmanuel Pascual"
+date: "4/19/2023"
+---
+
+This chapter discusses essential functions from the dplyr package. These include: **select, filter, arrange, mutate, summarise, and group_by**. In you blog post demonstrate that you understand and can use each of these functions.
+
+```{r}
+library(tidyverse)
+budget <- read_csv("data/budget.csv", show_col_types = FALSE)
+```
+
+Once we have our data imported this chapter wants us to select the column product and the second coloumn using the parentaces as a specifier. This is all about Selects!
+
+```{r}
+# select single column by name
+product_dat <- budget %>% select(product) 
+
+product_dat
+# select single column by number
+product_dat <- budget %>% select(1) 
+
+product_dat
+
+# select columns individually
+sales2019 <- budget %>% select(region, product, sales_2019) #selecting the coloumns that we want!
+
+sales2019 
+# select columns with colon
+sales2019 <- budget %>% select(region:sales_2019) #This selects all column between these two! 
+
+sales2019
+
+regions <- budget %>% select(`Region of Sales` = 1, 3:6)
+
+head(regions, 2)
+
+
+```
+
+|      Function | results                                                    |
+|--------------------------------------:|:--------------------------------|
+| starts_with() | select columns that start with a character string          |
+|   ends_with() | select columns that end with a character string            |
+|    contains() | select columns that contain a character string             |
+|   num_range() | select columns with a name that matches the pattern prefix |
+
+
+
+
+*FILTER* 
+
+```{r}
+# select all rows where region equals North
+budget %>% filter(region == "North")
+
+# select all rows where expenses_2020 were exactly equal to 200
+budget %>% filter(expenses_2020 == 200)
+
+# select all rows where sales_2019 was more than 100
+budget %>% filter(sales_2019 > 2000)
+
+# everything but the North
+budget %>% filter(region != "North")
+```
+
+Now we have seen many examples of filtering using variables that we want to see but what do we do when we want to filter out certain variables, I'll show you that now! 
+
+```{r}
+# retain any rows where region is north or south, and where product equals widget
+budget %>%
+  filter(region %in% c("North", "South"),
+         product == "widgets")
+
+# retain any rows where the region is not east or west, and where the product does not equal gadgets
+budget %>%
+  filter(!region %in% c("East", "West"),
+         product != "gadgets")
+```
+
+ Arrange() can be useful when preparing data for display in tables. arrange() works on character data where it will sort alphabetically, as well as numeric data where the default is ascending order (smallest to largest). Reverse the order using desc().
+ 
+```{r}
+# arranging the table 
+# first by product in alphabetical order
+# then by "region" in reverse alphabetical order
+budget %>%
+  arrange(product, desc(region))
+
+
+budget %>%
+  mutate(region = factor(region, levels = c("North", "South", "East", "West"))) %>%
+  filter(product == "gadgets") %>%
+  arrange(region)
+region_prod <- budget4 %>%
+  group_by(region, product) %>%
+  summarise(
+    mean_sales = mean(sales),
+    mean_expenses = mean(expenses),
+    min_profit = min(expenses - sales),
+    max_profit = max(expenses - sales)
+  ) %>%
+  ungroup()
+```
+ 
+```{r}
+## mutate
+
+
+budget2 <- budget %>%
+  mutate(
+    sales = sales_2019 + sales_2020,
+    expenses = expenses_2019 + expenses_2020,
+    profit = sales - expenses,
+    region = paste(region, "Office")
+  )
+
+budget2
+
+budget3 <- budget %>%
+  mutate(
+    A = 1,
+    B = 1:8,
+    C = mean(1:8),
+    D = c(1,2,1,2,1,2,1,2),
+    E = rep(1:2,4)
+  )
+budget3 
+
+```
+
+Mutate with logic operators
+
+```{r}
+
+budget2 <- budget2 %>%
+  mutate(profit_category = profit > 0,
+         product = as.factor(product))
+
+budget2
+```
+
+ ## summarise
+
+```{r}
+budget4 <- budget %>%
+  select(-satisfaction_2019, -satisfaction_2020) %>%
+  pivot_longer(cols = sales_2019:expenses_2020,
+               names_to = c("type", "year"),
+               names_sep = "_",
+               values_to = "value") %>%
+  pivot_wider(names_from = type,
+              values_from = value)
+
+head(budget4) # check the format
+```
+
+```{r}
+budget4 %>%
+  summarise(
+    mean_sales = mean(sales),
+    mean_expenses = mean(expenses),
+    min_profit = min(expenses - sales),
+    max_profit = max(expenses - sales)
+  )
+```
+
+## group_by
+
+```{r}
+year_prod <- budget4 %>%
+  group_by(year, product) %>%
+  summarise(
+    mean_sales = mean(sales),
+    mean_expenses = mean(expenses),
+    min_profit = min(expenses - sales),
+    max_profit = max(expenses - sales)
+  ) %>%
+  ungroup()
+```

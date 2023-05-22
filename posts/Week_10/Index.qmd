@@ -1,8 +1,10 @@
 ---
 title: "Data Tidying"
-author: "Matt Crump"
+author: "Emmanuel Pascual"
 date: "4/19/2023"
 ---
+
+We will be using TidyVerse for all of our filtering and cleaning of data!
 
 ```{r setup, include=FALSE}
 
@@ -10,28 +12,24 @@ library(tidyverse) # This is required for TidyClean up
 
 ```
 
-## look at untidy data
+We first must collect our data and this is done by finding the directory for it and summoning it
 
 ```{r}
-
-untidy_data <- read_csv("data/untidy_data.csv", show_col_types = FALSE)
-
-knitr::kable(untidy_data)
-```
-
-## look at tidy data
-
-```{r}
-
+untidy_data <- read_csv("data/untidy_data.csv", show_col_types = FALSE) #We are summoning our data! 
 tidy_data <- read_csv("data/tidy_data.csv", show_col_types = FALSE)
-
-knitr::kable(tidy_data)
-
 ```
 
-## selecting columns
+Once we have our data nice and imported we are able to create tibbles to fix up how we want to represent that data for instance this first example groups the data by customer id and takes the total of items and stores it into total items as is done with the total_price.
 
 ```{r}
+tidy_data %>%
+  group_by(customer_id) %>%
+  summarise(
+    total_items = sum(items),
+    total_price = sum(totalprice)
+  ) #This is a tibble that we created changing variable name and taking the values
+
+
 # select just the customer ID and 3 total price columns
 wide_totalprice <- select(
   .data = untidy_data,
@@ -41,45 +39,20 @@ wide_totalprice <- select(
   `2020` = totalprice_2020
 )
 
+wide_totalprice
 
- wide_totalprice <- select(
-   .data = untidy_data,
-   customer_id, 
-   totalprice_2018,
-   totalprice_2019,
-   totalprice_2020
- ) %>%
-   rename(
-   `2018` = totalprice_2018,
-   `2019` = totalprice_2019,
-   `2020` = totalprice_2020
-   )
- 
- 
- wide_totalprice <- untidy_data[,]
-
-untidy_data[ , c(1,5,6,7) ]
-
-untidy_data[ , c(1,5:7) ]
-```
-
-## pivot the table longer
-
-```{r}
-long_totalprice <- pivot_longer(
+long_totalprice <- pivot_longer( #Pivot Longer just make everything longer
   data = wide_totalprice,
-  cols = 2:4,
+  cols = `2018`:`2020`,
   names_to = "year",
   values_to = "totalprice")
 
-```
+long_totalprice
 
-```{r}
 ggplot(long_totalprice, aes(x = totalprice, fill = year)) +
   geom_histogram(binwidth = 10, color = "black")
-```
 
-## pivot wider
+```
 
 ```{r}
 wide_by_customer <- pivot_wider(
@@ -90,15 +63,10 @@ wide_by_customer <- pivot_wider(
   values_from = totalprice # the new column values
 )
 
-wide_by_year <- pivot_wider(
-  data = long_totalprice,
-  id_cols = customer_id, # identifying column(s)
-  names_from = year, # the new column names
-  values_from = totalprice # the new column values
-)
+wide_by_customer
 ```
 
-## multi-step tidying
+Here we transform data into a different version once again!
 
 ```{r}
 longer_data <- pivot_longer(
@@ -108,10 +76,13 @@ longer_data <- pivot_longer(
   names_sep = "_", # how to split cols into new columns
   # names_pattern = "(.*)_(.*)", # alternative to names_sep
   values_to = "value", # new column name for values
+  
   # make sure new columns are the right data type
   names_transform = list(year = as.integer),
   values_transform = list(value = as.character) 
 )
+
+longer_data
 
 wider_data <- pivot_wider(
   data = longer_data,
@@ -119,6 +90,11 @@ wider_data <- pivot_wider(
   names_from = category,
   values_from = value
 )
+
+wider_data
+```
+
+```{r}
 
 split_data <- separate(
   data = wider_data, 
@@ -133,10 +109,13 @@ mutated_data <- mutate(
   .data = split_data,
   price_per_item = stringr::str_replace_all(
     string = price_per_item, 
-    pattern = "[()]", # regex 
+    pattern = "[()]", 
     replacement = ""
   )
 )
+
+# check the data types
+glimpse(mutated_data)
 
 tidy_data <- type_convert(
   df = mutated_data,
@@ -147,41 +126,81 @@ tidy_data <- type_convert(
 glimpse(tidy_data)
 ```
 
-
-
 ```{r}
+untidy_data <- read_csv("data/untidy_data.csv", 
+                        show_col_types = FALSE)
 
-tidy_data_2 <- read_csv(file = "data/untidy_data.csv",
-                      show_col_types = FALSE) %>%
-  pivot_longer(
-    cols = itemsprice_2018:totalprice_2020,
-    names_to = c("category", "year"),
-    names_sep = "_", 
-    values_to = "value", 
-    names_transform = list(year = as.integer),
-    values_transform = list(value = as.character) 
-  ) %>%
-  pivot_wider(
-    id_cols = c(customer_id, year),
-    names_from = category,
-    values_from = value
-  ) %>%
-  separate(
-    col = itemsprice,
-    into = c("items", "price_per_item"),
-    sep = " ", 
-    remove = TRUE, 
-    convert = TRUE
-  ) %>%
-  mutate(
-    price_per_item = stringr::str_replace_all(
-      string = price_per_item, 
-      pattern = "[()]", 
-      replacement = ""
-    )
-  ) %>%
-  type_convert(
-    trim_ws = TRUE
+longer_data <- pivot_longer(
+  data = untidy_data,
+  cols = itemsprice_2018:totalprice_2020,
+  names_to = c("category", "year"),
+  names_sep = "_", 
+  values_to = "value", 
+  names_transform = list(year = as.integer),
+  values_transform = list(value = as.character) 
+) 
+
+wider_data <- pivot_wider(
+  data = longer_data,
+  id_cols = c(customer_id, year),
+  names_from = category,
+  values_from = value
+)
+
+split_data <- separate(
+  data = wider_data,
+  col = itemsprice,
+  into = c("items", "price_per_item"),
+  sep = " ", 
+  remove = TRUE, 
+  convert = TRUE
+) 
+
+mutated_data <- mutate(
+  .data = split_data,
+  price_per_item = stringr::str_replace_all(
+    string = price_per_item, 
+    pattern = "[()]", 
+    replacement = ""
   )
+) 
 
+tidy_data <- type_convert(
+  df = mutated_data,
+  trim_ws = TRUE
+)
 ```
+
+    Read the data with read_csv()
+        file: from the file at r path(“data/untidy_data.csv”)`,
+        show_col_types: do not show the colukmn types message; and then
+
+    Reshape the data longer with pivot_longer()
+        cols: take the columns from itemsprice_2018 to totalprice_2020,
+        names_to: create new columns called “category” and “year” from the cols header names,
+        names_sep: separate the column names using “_”
+        values_to: create a new column called “value” from the cols values,
+        names_transform: transform the year column to integers,
+        values_transform: transform the value column to characters; and then
+
+    Reshape the data wider with pivot_wider()
+        id_cols: each row should be an observation of a unique customer_id and year,
+        names_from: get the new column names from the values in the category column,
+        values_from: get the new column values from the values in the value column; and then
+
+    Split multiple values in the same column with separate()
+        col: separate the column itemsprice,
+        into: into new columns called “items” and “price_per_item”,
+        sep: separate the values at each ” “,
+        remove: do remove the old column,
+        convert: do convert the new columns into the right data types; and then
+
+    Change a column with mutate()
+
+        price_per_item: replace the existing column price_per_item with the result of a search and replace with str_replace_all():
+            string: the strings to modify come from the price_per_item columns,
+            pattern: search for left or right parentheses,
+            replacement: replace them with ““; and then,
+
+    Fix data types with type_convert()
+        trim_ws: remove spaces, tabs, and line breaks from the start and end of each value
